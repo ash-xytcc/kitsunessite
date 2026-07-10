@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Publish a comic</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#171512;background:#f5efe3;--red:#a3402d;--line:#d5cabb;--muted:#6b6258}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#a3402d12,transparent 28rem),#f5efe3}main{width:min(680px,calc(100% - 2rem));margin:auto;padding:2rem 0 5rem}a{color:inherit}h1{font:800 clamp(2.5rem,10vw,5rem)/.95 Georgia,serif;letter-spacing:-.05em;margin:.3rem 0 1rem}.kicker{color:var(--red);font-size:.76rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.lead{color:var(--muted);font:1.1rem/1.55 Georgia,serif}.panel{border:1px solid var(--line);border-radius:1rem;padding:clamp(1rem,4vw,2rem);background:#ffffff66;margin-top:2rem;box-shadow:0 16px 45px #33271814}label{display:grid;gap:.45rem;font-weight:800;margin-bottom:1.15rem}input,textarea,button{font:inherit}input[type=text],input[type=password],textarea,input[type=file]{width:100%;border:1px solid var(--line);border-radius:.65rem;padding:.85rem;background:#fff}textarea{min-height:8rem;resize:vertical}input[type=file]{padding:.7rem}.buttons{display:flex;gap:.7rem;flex-wrap:wrap}button,.button{border:0;border-radius:999px;padding:.8rem 1.15rem;font-weight:900;cursor:pointer;text-decoration:none;background:#171512;color:#fff}button.secondary,.button.secondary{background:transparent;color:#171512;border:1px solid var(--line)}button.danger{background:#842d22}button:disabled{opacity:.5;cursor:wait}.hidden{display:none}.message{white-space:pre-wrap;line-height:1.5;padding:1rem;border-radius:.7rem;background:#fff;border:1px solid var(--line);margin-top:1rem}.error{border-color:#842d22;color:#842d22}.success{border-color:#587047}.small{color:var(--muted);font-size:.85rem;line-height:1.5}.preview-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+</style>
+</head>
+<body><main>
+<p class="kicker">Private publisher</p><h1>Post a new comic.</h1>
+<p class="lead">Choose the pages in reading order, add a title and caption, then make a private preview. No account, dashboard, or ceremonial password-reset email.</p>
+<section id="unlock" class="panel hidden"><h2>Open the publisher</h2><p class="small">Paste the private publishing key once. This device will remember it.</p><label>Private key<input id="key" type="password" autocomplete="off"></label><button id="saveKey">Open publisher</button></section>
+<form id="form" class="panel hidden">
+<label>Title<input name="title" type="text" maxlength="180" required placeholder="Comic title"></label>
+<label>Caption<textarea name="caption" maxlength="8000" placeholder="Optional words beneath the comic"></textarea></label>
+<label>Comic pages<input name="images" type="file" accept="image/*" multiple required></label>
+<p class="small">Select the pages in the order they should appear. Up to 24 images, 20 MB each.</p>
+<div class="buttons"><button type="submit">Make private preview</button><button type="button" class="secondary" id="undo">Unpublish latest comic</button></div>
+<div id="status" aria-live="polite"></div>
+</form>
+<section id="result" class="panel hidden"><p class="kicker">Draft ready</p><h2 id="resultTitle">Private preview</h2><p id="resultText" class="small"></p><div class="preview-actions"><a id="previewLink" class="button secondary" target="_blank" rel="noopener">Open preview</a><button id="publish">Publish it</button><button id="cancel" class="danger">Cancel draft</button></div><div id="resultStatus" aria-live="polite"></div></section>
+<p class="small"><a href="/">Return to the public site</a></p>
+</main>
+<script>
+const $=s=>document.querySelector(s),store="kitsune-publish-key";let draftToken="";
+function getKey(){const h=decodeURIComponent(location.hash.replace(/^#(?:key=)?/,""));if(h){localStorage.setItem(store,h);history.replaceState(null,"",location.pathname);return h}return localStorage.getItem(store)||""}
+function show(){const ok=!!getKey();$("#unlock").classList.toggle("hidden",ok);$("#form").classList.toggle("hidden",!ok)}
+function note(target,text,type=""){target.className="message "+type;target.textContent=text}
+async function send(form){form.set("key",getKey());const r=await fetch("/publish",{method:"POST",body:form}),j=await r.json().catch(()=>({error:"Unreadable response"}));if(r.status===403){localStorage.removeItem(store);show()}if(!r.ok)throw Error(j.error||"Request failed");return j}
+$("#saveKey").onclick=()=>{const k=$("#key").value.trim();if(k)localStorage.setItem(store,k);show()};
+$("#form").onsubmit=async e=>{e.preventDefault();const button=e.submitter||$("#form button[type=submit]"),fd=new FormData(e.currentTarget);fd.set("action","upload");button.disabled=true;note($("#status"),"Uploading the pages and building a preview…");try{const j=await send(fd);draftToken=j.token;$("#result").classList.remove("hidden");$("#resultTitle").textContent=j.title;$("#resultText").textContent=`${j.pages} page${j.pages===1?"":"s"} saved. Nothing is public yet.`;$("#previewLink").href=j.preview;$("#resultStatus").className="";$("#resultStatus").textContent="";$("#result").scrollIntoView({behavior:"smooth"});note($("#status"),"Draft saved.","success")}catch(x){note($("#status"),x.message,"error")}finally{button.disabled=false}};
+$("#publish").onclick=async()=>{const b=$("#publish"),f=new FormData();f.set("action","publish");f.set("token",draftToken);b.disabled=true;try{const j=await send(f);note($("#resultStatus"),"Published. Opening the live comic…","success");location.href=j.url}catch(x){note($("#resultStatus"),x.message,"error");b.disabled=false}};
+$("#cancel").onclick=async()=>{if(!draftToken)return;const f=new FormData();f.set("action","cancel");f.set("token",draftToken);try{await send(f);draftToken="";$("#result").classList.add("hidden");$("#form").reset();note($("#status"),"Draft cancelled. Nothing was published.","success")}catch(x){note($("#resultStatus"),x.message,"error")}};
+$("#undo").onclick=async()=>{if(!confirm("Take the newest published comic offline?"))return;const f=new FormData();f.set("action","undo");try{const j=await send(f);note($("#status"),`Unpublished “${j.title}”. Its private preview is still available: ${j.preview}`,"success")}catch(x){note($("#status"),x.message,"error")}};
+show();
+</script></body></html>

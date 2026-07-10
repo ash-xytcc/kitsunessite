@@ -1,0 +1,19 @@
+name = "kitsune-email-publisher"
+main = "src/index.js"
+compatibility_date = "2026-07-10"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+PUBLIC_SITE_URL = "https://YOUR-SITE-DOMAIN"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kitsune-comics"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "kitsune-comic-images"
+
+# Add ALLOWED_EMAIL as a secret instead of writing it here:
+# npx wrangler secret put ALLOWED_EMAIL
