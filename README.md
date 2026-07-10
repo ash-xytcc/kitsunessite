@@ -7,7 +7,7 @@ Kitsune does not need a CMS account, an app, or a dashboard. She texts comic pag
 ## Stack
 
 - Cloudflare Pages for the public website
-- One Cloudflare Pages `_worker.js` for routing, the API, and the incoming-message webhook
+- Cloudflare Pages Functions for the comic API and incoming-message webhook
 - Cloudflare D1 for comic metadata
 - Cloudflare R2 for comic images
 - Twilio for the dedicated SMS/MMS number

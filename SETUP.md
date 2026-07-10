@@ -11,7 +11,7 @@ In the existing Pages project, use:
 - Build command: `exit 0`
 - Build output directory: `.`
 
-The Pages Function is the `_worker.js` file in the site output directory.
+The Pages Functions live in the repository's `functions/` directory.
 
 ## 2. Create the D1 database
 
@@ -35,7 +35,7 @@ Add the binding to both Production and Preview if previews should work from pull
 4. Add an **R2 bucket binding** named exactly `MEDIA`.
 5. Select `kitsune-comic-images`.
 
-The bucket does not need to be public. Images are served through `/api/media`.
+The bucket does not need to be public. Images are served through `/api?action=media`.
 
 ## 4. Add environment variables and secrets
 
@@ -72,10 +72,10 @@ The webhook verifies Twilio's request signature and then checks that the sender 
 
 Open:
 
-- `/api/health`
-- `/api/comics`
+- `/api?action=health`
+- `/api?action=list`
 
-`/api/health` should report that D1 and R2 are configured. It intentionally does not reveal secret values.
+The health response should report that D1 and R2 are configured. It intentionally does not reveal secret values.
 
 ## 7. Test the texting workflow
 
