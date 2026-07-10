@@ -1,3 +1,4 @@
+/publish /publish.html 302
 /archive /index.html 200
 /about /index.html 200
 /comic/* /index.html 200
