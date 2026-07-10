@@ -18,7 +18,7 @@ export async function onRequestPost({request,env}){
    if(!files.length)return json({error:"Attach at least one comic image."},400);
    if(files.length>24)return json({error:"A comic can contain at most 24 images."},400);
    const id=crypto.randomUUID(),token=(crypto.randomUUID()+crypto.randomUUID()).replaceAll("-",""),t=now(),title=String(f.get("title")||"").trim(),caption=String(f.get("caption")||"").trim();
-   await env.DB.prepare("INSERT INTO comics(id,preview_token,title,caption,status,source_id,created_at,updated_at) VALUES(?,?,?,?,'draft','web',?,?)").bind(id,token,title,caption,t,t).run();
+   await env.DB.prepare("INSERT INTO comics(id,preview_token,title,caption,status,source_phone,created_at,updated_at) VALUES(?,?,?,?,'draft','web',?,?)").bind(id,token,title,caption,t,t).run();
    let order=0;
    try{
     for(const file of files){
