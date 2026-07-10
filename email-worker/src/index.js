@@ -8,7 +8,7 @@ const source=s=>`email:${String(s||"").trim().toLowerCase()}`;
 const cleanSubject=s=>String(s||"").replace(/^(re|fwd?):\s*/i,"").replace(/[\r\n]+/g," ").trim();
 const cleanBody=s=>String(s||"").split(/\n(?:On .+wrote:|From: .+|>)/i)[0].trim();
 const base=env=>String(env.PUBLIC_SITE_URL||"").replace(/\/+$/,"");
-async function active(env,id,status="draft"){return env.DB.prepare("SELECT * FROM comics WHERE source_id=? AND status=? ORDER BY updated_at DESC LIMIT 1").bind(id,status).first()}
+async function active(env,id,status="draft"){return env.DB.prepare("SELECT * FROM comics WHERE source_phone=? AND status=? ORDER BY updated_at DESC LIMIT 1").bind(id,status).first()}
 async function count(env,id){const r=await env.DB.prepare("SELECT COUNT(*) n FROM comic_media WHERE comic_id=?").bind(id).first();return Number(r?.n||0)}
 async function publish(env,c){if(!await count(env,c.id))throw Error("The draft has no pages.");const title=String(c.title||"").trim()||"Untitled comic",s=c.slug||`${slug(title)}-${c.id.slice(0,6)}`,t=now();await env.DB.prepare("UPDATE comics SET title=?,slug=?,status='published',published_at=?,updated_at=? WHERE id=?").bind(title,s,t,t,c.id).run();return s}
 function replyRaw(message,text){const subject=cleanSubject(message.headers.get("subject")||"")||"Kitsune Comics",mid=String(message.headers.get("message-id")||"").replace(/[\r\n]/g,"");let raw=`From: ${message.to}\r\nTo: ${message.from}\r\nSubject: Re: ${subject}\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n`;if(mid)raw+=`In-Reply-To: ${mid}\r\nReferences: ${mid}\r\n`;raw+=`\r\n${text}\r\n`;return message.reply(new EmailMessage(message.to,message.from,raw))}
@@ -33,7 +33,7 @@ export default {
    const images=(mail.attachments||[]).filter(a=>String(a.mimeType||"").startsWith("image/"));
    if(images.length){
     if(images.length>24)throw Error("A comic can contain at most 24 attached images.");const id=crypto.randomUUID(),token=(crypto.randomUUID()+crypto.randomUUID()).replaceAll("-",""),t=now(),title=cleanSubject(mail.subject)||"Untitled comic";
-    await env.DB.prepare("INSERT INTO comics(id,preview_token,title,caption,status,source_id,created_at,updated_at) VALUES(?,?,?,?,'draft',?,?,?)").bind(id,token,title,text,from,t,t).run();
+    await env.DB.prepare("INSERT INTO comics(id,preview_token,title,caption,status,source_phone,created_at,updated_at) VALUES(?,?,?,?,'draft',?,?,?)").bind(id,token,title,text,from,t,t).run();
     let order=0;for(const image of images){const type=String(image.mimeType||"");if(image.content.byteLength>20*1024*1024)throw Error(`${image.filename||"An image"} is larger than 20 MB.`);const key=`comics/${id}/${String(order).padStart(3,"0")}.${ext(type)}`;await env.MEDIA.put(key,image.content,{httpMetadata:{contentType:type}});await env.DB.prepare("INSERT INTO comic_media(id,comic_id,object_key,content_type,sort_order,alt_text,created_at) VALUES(?,?,?,?,?,'',?)").bind(crypto.randomUUID(),id,key,type,order,t).run();order++}
     await safeReply(message,`Draft received: “${title}”\n${order} page${order===1?"":"s"}\n\nPrivate preview: ${base(env)}/preview/${token}\n\nReply PUBLISH when it looks right, or CANCEL to discard it.`);return
    }
