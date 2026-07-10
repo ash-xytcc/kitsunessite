@@ -1,0 +1,13 @@
+const json=(x,s=200)=>new Response(JSON.stringify(x),{status:s,headers:{"content-type":"application/json","cache-control":"no-store"}});
+const media=k=>`/api?action=media&key=${encodeURIComponent(k)}`;
+async function pack(env,c){const m=await env.DB.prepare("SELECT object_key,content_type,sort_order,alt_text FROM comic_media WHERE comic_id=? ORDER BY sort_order").bind(c.id).all();return{id:c.id,title:c.title,slug:c.slug,caption:c.caption,status:c.status,created_at:c.created_at,updated_at:c.updated_at,published_at:c.published_at,images:(m.results||[]).map(x=>({...x,sort_order:Number(x.sort_order),url:media(x.object_key)}))}}
+export async function onRequestGet({request,env}){
+ const u=new URL(request.url),a=u.searchParams.get("action")||"list";
+ if(a==="health")return json({ok:true,configured:{database:!!env.DB,media:!!env.MEDIA,phone:!!env.ALLOWED_PHONE,twilio:!!env.TWILIO_AUTH_TOKEN,site:!!env.PUBLIC_SITE_URL}});
+ if(a==="media"){if(!env.MEDIA)return new Response("Media not configured",{status:503});const k=u.searchParams.get("key");if(!k||k.includes("..")||k.startsWith("/"))return new Response("Bad key",{status:400});const o=await env.MEDIA.get(k);if(!o)return new Response("Not found",{status:404});const h=new Headers();o.writeHttpMetadata(h);h.set("etag",o.httpEtag);h.set("cache-control","public,max-age=86400");return new Response(o.body,{headers:h})}
+ if(!env.DB)return json(a==="list"?{comics:[],configured:false}:{error:"Database not configured"},a==="list"?200:503);
+ if(a==="list"){let n=parseInt(u.searchParams.get("limit")||"50",10);n=Math.min(Math.max(n||50,1),100);const r=await env.DB.prepare("SELECT id,title,slug,caption,status,created_at,updated_at,published_at FROM comics WHERE status='published' ORDER BY published_at DESC LIMIT ?").bind(n).all(),out=[];for(const c of r.results||[])out.push(await pack(env,c));return json({comics:out,configured:true})}
+ if(a==="comic"){const c=await env.DB.prepare("SELECT id,title,slug,caption,status,created_at,updated_at,published_at FROM comics WHERE slug=? AND status='published' LIMIT 1").bind(u.searchParams.get("slug")||"").first();return c?json({comic:await pack(env,c)}):json({error:"Comic not found"},404)}
+ if(a==="preview"){const c=await env.DB.prepare("SELECT id,title,slug,caption,status,created_at,updated_at,published_at FROM comics WHERE preview_token=? AND status IN ('draft','unpublished') LIMIT 1").bind(u.searchParams.get("token")||"").first();return c?json({comic:await pack(env,c)}):json({error:"Preview not found or already published"},404)}
+ return json({error:"Unknown action"},404)
+}
