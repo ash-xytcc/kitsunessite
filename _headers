@@ -1,0 +1,14 @@
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+/archive
+  Cache-Control: no-cache, no-store, must-revalidate
+/about
+  Cache-Control: no-cache, no-store, must-revalidate
+/comic/*
+  Cache-Control: no-cache, no-store, must-revalidate
+/preview/*
+  Cache-Control: no-cache, no-store, must-revalidate
+/publish
+  Cache-Control: no-cache, no-store, must-revalidate
+/publish.html
+  Cache-Control: no-cache, no-store, must-revalidate
