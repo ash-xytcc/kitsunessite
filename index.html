@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Kitsune Comics. Small stories with sharp teeth.">
+<meta name="theme-color" content="#101214">
 <title>Kitsune Comics</title>
 <style>
 :root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
-*{box-sizing:border-box}html{scroll-behavior:smooth;color-scheme:dark}body{margin:0;background:radial-gradient(circle at 10% 0,#d35d3e12,transparent 28rem),var(--paper)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;color-scheme:dark;background:#101214}body{margin:0;min-height:100vh;color:var(--ink);background:radial-gradient(circle at 10% 0,#d35d3e12,transparent 28rem),var(--paper)}body:not(.home),body:not(.home) header,body:not(.home) main,body:not(.home) footer{background-color:#101214;color:var(--ink)}
 a{color:inherit;text-underline-offset:.2em}a:hover{color:var(--red)}header,footer,main{width:min(1100px,calc(100% - 2rem));margin:auto}
 header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
 .brand{font:800 1.25rem Georgia,serif;text-decoration:none;display:flex;align-items:center;gap:.6rem}.mark{display:grid;place-items:center;border:2px solid;border-radius:48%;width:2.4rem;aspect-ratio:1;font-family:serif;transform:rotate(-5deg)}
@@ -33,7 +34,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 @media(max-width:650px){header{gap:.5rem}.brand span:last-child{display:none}nav{gap:.55rem;font-size:.78rem}.home header{height:70px;padding:0 1rem}.home .brand{font-size:1.1rem}.home nav{gap:.55rem;font-size:.78rem}.hero-stage{min-height:calc(100svh - 70px);align-items:flex-start}.hero-art{right:-28%;min-width:128%;height:100%;object-position:center}.hero-stage::before{background:linear-gradient(180deg,#101214 0%,rgba(16,18,20,.96) 32%,rgba(16,18,20,.58) 58%,rgba(16,18,20,.12) 100%)}.hero-copy{padding:2.3rem 0 17rem}.hero-copy-inner{width:100%}.hero-copy .kicker{margin-bottom:1rem}.hero-title{font-size:clamp(3.55rem,17vw,5rem);line-height:.86}.hero-deck{max-width:24rem;font-size:1rem}.hero-buttons{gap:.7rem;margin-top:1.3rem}.hero-button{min-height:3.2rem;padding:.75rem 1rem;font-size:.9rem}.scroll-cue{display:none}.latest-wrap{padding-top:3rem}}
 </style>
 </head>
-<body>
+<body data-build="dark-site-2026-07-11">
 <header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a data-nav="latest" href="/">Latest</a><a data-nav="archive" href="/archive">Archive</a><a data-nav="about" href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
 <main id="app"><div class="state"><p>Opening the den…</p></div></main>
 <footer>Made independently. No feed algorithm, no account required.</footer>
