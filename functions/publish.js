@@ -43,4 +43,4 @@ export async function onRequestPost({request,env}){
   return json({error:"Unknown publishing action."},400);
  }catch(e){console.error(e);return json({error:e.message||"Publishing failed. Nothing was made public."},500)}
 }
-export const onRequestGet=()=>json({error:"POST only"},405);
+export const onRequestGet=({request})=>Response.redirect(new URL("/publish.html",request.url),302);
