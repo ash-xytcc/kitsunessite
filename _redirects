@@ -1,2 +1,4 @@
+/archive /index.html 200
+/about /index.html 200
 /comic/* /index.html 200
 /preview/* /index.html 200
