@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Kitsune Comics</title>
+  <desc id="desc">The fox character mark for Kitsune Comics.</desc>
+  <rect width="512" height="512" rx="112" fill="#101214"/>
+  <circle cx="256" cy="256" r="184" fill="none" stroke="#d35d3e" stroke-width="28"/>
+  <text x="256" y="318" text-anchor="middle" font-size="224" font-weight="700" font-family="Georgia, 'Times New Roman', serif" fill="#f6efe5">狐</text>
+</svg>
