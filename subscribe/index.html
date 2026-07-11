@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Subscribe to Kitsune Comics with RSS.">
+<meta name="theme-color" content="#101214">
+<link rel="alternate" type="application/rss+xml" title="Kitsune Comics" href="/feed.xml">
+<title>Subscribe | Kitsune Comics</title>
+<style>
+:root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;--field:#0d0f10;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+*{box-sizing:border-box}html{color-scheme:dark;background:var(--paper)}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0,#d35d3e12,transparent 28rem),var(--paper);color:var(--ink)}
+a{color:inherit;text-underline-offset:.2em}a:hover{color:var(--red)}header,footer,main{width:min(900px,calc(100% - 2rem));margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.brand{font-weight:900;text-decoration:none;display:flex;align-items:center;gap:.6rem}.mark{display:grid;place-items:center;border:2px solid;border-radius:48%;width:2.4rem;aspect-ratio:1;font-family:serif;transform:rotate(-5deg)}
+nav{display:flex;align-items:center;gap:1rem;font-weight:800;font-size:.9rem}nav a{text-decoration:none}.support-link{color:var(--red)}
+main{padding:clamp(4rem,10vw,8rem) 0}.kicker{color:var(--red);font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+h1{font:800 clamp(3.5rem,11vw,7rem)/.95 Georgia,serif;letter-spacing:-.055em;margin:.2rem 0 1.5rem}.lead{max-width:45rem;color:var(--muted);font:1.2rem/1.65 Georgia,serif}
+.panel{max-width:46rem;margin-top:2rem;padding:clamp(1.2rem,4vw,2rem);border:1px solid var(--line);border-radius:1rem;background:var(--panel);box-shadow:0 16px 45px #0006}.panel h2{margin:0 0 .7rem;font:800 1.6rem/1.1 Georgia,serif}.panel p,.panel li{color:var(--muted);line-height:1.55}.panel ol{padding-left:1.25rem}
+.feed-box{display:flex;gap:.65rem;margin-top:1.25rem}.feed-box input{min-width:0;flex:1;border:1px solid var(--line);border-radius:.65rem;background:var(--field);color:var(--ink);padding:.85rem;font:inherit}.buttons{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1rem}.button,button{display:inline-flex;align-items:center;justify-content:center;min-height:2.9rem;border:1px solid var(--line);border-radius:999px;padding:.7rem 1rem;background:transparent;color:var(--ink);font:800 .9rem system-ui,sans-serif;text-decoration:none;cursor:pointer}.button.primary,button.primary{border-color:var(--ink);background:var(--ink);color:#171512}.button:hover,button:hover{border-color:var(--red);color:var(--red)}.button.primary:hover,button.primary:hover{color:#171512;opacity:.88}.status{min-height:1.4rem;margin:.8rem 0 0;color:var(--muted);font-size:.86rem}
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.85rem}
+@media(max-width:650px){nav{gap:.55rem;font-size:.78rem}.brand span:last-child{display:none}.feed-box{display:grid}.feed-box input{width:100%}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a href="/archive">Archive</a><a href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
+<main>
+<p class="kicker">Follow without algorithms</p>
+<h1>Subscribe to the comics.</h1>
+<p class="lead">RSS delivers each new comic to the reader you choose. No account here, no social-media feed, and no company deciding whether you get to see it.</p>
+<section class="panel">
+<h2>The easy way</h2>
+<ol><li>Open any RSS reader.</li><li>Choose <strong>Add feed</strong>, <strong>Follow site</strong>, or <strong>Subscribe</strong>.</li><li>Paste the address below.</li></ol>
+<div class="feed-box"><input id="feed-url" type="text" readonly aria-label="RSS feed address"><button id="copy" class="primary" type="button">Copy feed address</button></div>
+<div class="buttons"><a id="open-feed" class="button" href="/feed.xml">Open RSS feed</a><button id="share" type="button" hidden>Share feed</button></div>
+<p id="status" class="status" aria-live="polite"></p>
+</section>
+<section class="panel"><h2>What happens next?</h2><p>Whenever Kitsune publishes a comic, it appears in your RSS reader alongside the other sites you follow, in chronological order. Humanity briefly remembers that subscriptions can simply work.</p></section>
+</main>
+<footer>Made independently. No feed algorithm, no account required.</footer>
+<script>
+const feed=new URL("/feed.xml",location.origin).href,input=document.querySelector("#feed-url"),copy=document.querySelector("#copy"),share=document.querySelector("#share"),status=document.querySelector("#status");input.value=feed;
+copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(feed);copy.textContent="Copied";status.textContent="Feed address copied. Paste it into your RSS reader.";setTimeout(()=>copy.textContent="Copy feed address",1800)}catch{input.select();document.execCommand("copy");status.textContent="Feed address copied."}});
+if(navigator.share){share.hidden=false;share.addEventListener("click",()=>navigator.share({title:"Kitsune Comics RSS feed",text:"Follow Kitsune Comics without an algorithm.",url:feed}).catch(()=>{}))}
+</script>
+</body>
+</html>
