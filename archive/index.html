@@ -6,45 +6,84 @@
 <meta name="theme-color" content="#101214">
 <title>Archive | Kitsune Comics</title>
 <style>
-:root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+:root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;--field:#0d0f10;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
 *{box-sizing:border-box}html{color-scheme:dark;background:var(--paper)}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0,#d35d3e12,transparent 28rem),var(--paper);color:var(--ink)}
-a{color:inherit;text-underline-offset:.2em}a:hover{color:var(--red)}header,footer,main{width:min(1100px,calc(100% - 2rem));margin:auto}
+a{color:inherit;text-underline-offset:.2em}a:hover{color:var(--red)}header,footer,main{width:min(1050px,calc(100% - 2rem));margin:auto}
 header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
 .brand{font-weight:900;text-decoration:none;display:flex;align-items:center;gap:.6rem}.mark{display:grid;place-items:center;border:2px solid;border-radius:48%;width:2.4rem;aspect-ratio:1;font-family:serif;transform:rotate(-5deg)}
 nav{display:flex;align-items:center;gap:1rem;font-weight:800;font-size:.9rem}nav a{text-decoration:none}.active{color:var(--red);text-decoration:underline}.support-link{color:var(--red)}
-main{padding:clamp(3rem,8vw,7rem) 0}.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:3rem;align-items:end;margin-bottom:5rem}
-.kicker{color:var(--red);font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
-h1,h2{font-family:Georgia,serif;letter-spacing:-.055em;line-height:.95;margin:.2rem 0}h1{font-size:clamp(3.5rem,11vw,7rem)}h2{font-size:clamp(2rem,6vw,4rem)}
-.hero p:last-child,.caption,.prose{font-family:Georgia,serif;color:var(--muted);font-size:1.15rem;line-height:1.6}
-.row{display:flex;justify-content:space-between;align-items:end;gap:1rem;border-bottom:1px solid var(--line);margin-bottom:1rem}
-.card{border:1px solid var(--line);border-radius:1rem;overflow:hidden;background:var(--panel);box-shadow:0 16px 45px #00000055}
-.meta{padding:clamp(1.2rem,4vw,2.5rem);border-bottom:1px solid var(--line)}.meta h1,.meta h2{font-size:clamp(2.2rem,7vw,4.8rem)}
-.caption{white-space:pre-wrap;margin:1rem 0 0}.date{display:block;color:var(--muted);margin-top:1rem;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.pages{display:grid;gap:1px;background:var(--line)}.pages img{width:100%;display:block;background:#0b0c0d}
-.actions{display:flex;justify-content:space-between;padding:1rem 1.25rem;font-weight:900}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}.tile{border:1px solid var(--line);border-radius:1rem;overflow:hidden;background:var(--panel)}.tile a{text-decoration:none}.tile img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#0b0c0d}.tile div{padding:1rem}.tile h2{font-size:1.6rem}.tile p{color:var(--muted);margin:.4rem 0 0}
-.state{display:grid;place-items:center;min-height:18rem;text-align:center;border:1px dashed var(--line);border-radius:1rem;padding:2rem}.state p{color:var(--muted);max-width:34rem;line-height:1.6}
-.preview{background:repeating-linear-gradient(-45deg,#d35d3e0b 0 12px,transparent 12px 24px),var(--paper)}.badge{border:1px solid var(--red);color:var(--red);border-radius:999px;padding:.4rem .7rem;font-size:.72rem;font-weight:900}
-.note{max-width:700px;margin:1rem auto;padding:1rem;border:1px solid var(--line);border-radius:.7rem;background:var(--panel)}
+main{padding:clamp(3rem,8vw,6rem) 0}.kicker{margin:0;color:var(--red);font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.archive-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(15rem,28rem);gap:2rem;align-items:end;margin:.25rem 0 2rem}h1,h2{font-family:Georgia,serif;letter-spacing:-.045em;line-height:1;margin:0}h1{font-size:clamp(3.5rem,10vw,6.5rem)}h2{font-size:1.55rem}.intro{margin:0;color:var(--muted);font:1.05rem/1.55 Georgia,serif}
+.controls{display:grid;grid-template-columns:minmax(16rem,1fr) repeat(3,minmax(8rem,auto));gap:.75rem;padding:1rem;border:1px solid var(--line);border-radius:.85rem;background:var(--panel);margin-bottom:.8rem}
+.controls label{display:grid;gap:.38rem;color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.controls input,.controls select{width:100%;min-height:2.8rem;border:1px solid var(--line);border-radius:.55rem;background:var(--field);color:var(--ink);padding:.65rem .75rem;font:inherit}.controls input:focus,.controls select:focus{outline:2px solid var(--red);outline-offset:1px}
+.result-count{min-height:1.4rem;margin:.35rem 0 1rem;color:var(--muted);font-size:.86rem}.archive-list{display:grid;gap:.7rem}.archive-item{display:grid;grid-template-columns:128px minmax(0,1fr);gap:1rem;align-items:start;padding:.85rem;border:1px solid var(--line);border-radius:.8rem;background:var(--panel)}
+.thumb{display:block;width:128px;height:92px;border:1px solid var(--line);border-radius:.55rem;overflow:hidden;background:var(--field);text-decoration:none}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.thumb-empty{display:grid;place-items:center;width:100%;height:100%;color:var(--muted);font:700 1.7rem Georgia,serif}
+.item-copy{min-width:0}.entry-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}.entry-title a{text-decoration:none}.entry-title a:hover{text-decoration:underline}.entry-date{flex:0 0 auto;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}.entry-meta{margin:.45rem 0 0;color:var(--muted);font-size:.8rem}.excerpt{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:.55rem 0 0;color:var(--muted);font:1rem/1.45 Georgia,serif}.read-link{display:inline-block;margin-top:.65rem;color:var(--ink);font-size:.85rem;font-weight:900;text-decoration:none}.read-link:hover{text-decoration:underline}
+.state{display:grid;place-items:center;min-height:14rem;text-align:center;border:1px dashed var(--line);border-radius:.8rem;padding:2rem}.state p{color:var(--muted);max-width:34rem;line-height:1.6}.state h2{font-size:1.8rem}
 footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.85rem}
-@media(max-width:650px){.hero{grid-template-columns:1fr;gap:1rem}nav{gap:.55rem;font-size:.78rem}.brand span:last-child{display:none}}
+@media(max-width:800px){.archive-heading{grid-template-columns:1fr;gap:.8rem}.controls{grid-template-columns:1fr 1fr}.controls label:first-child{grid-column:1/-1}}
+@media(max-width:650px){nav{gap:.55rem;font-size:.78rem}.brand span:last-child{display:none}.archive-item{grid-template-columns:86px minmax(0,1fr);gap:.75rem;padding:.7rem}.thumb{width:86px;height:68px}.entry-top{display:block}.entry-date{display:block;margin-top:.35rem;white-space:normal}h2{font-size:1.25rem}.excerpt{-webkit-line-clamp:3;font-size:.93rem}.controls{grid-template-columns:1fr}.controls label:first-child{grid-column:auto}}
 </style>
 </head>
 <body>
-<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a data-nav="latest" href="/">Latest</a><a class="active" data-nav="archive" href="/archive">Archive</a><a data-nav="about" href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
-<main id="app"><div class="state"><p>Opening the den…</p></div></main>
+<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a href="/">Latest</a><a class="active" href="/archive">Archive</a><a href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
+<main>
+<p class="kicker">Every published comic</p>
+<div class="archive-heading"><h1>Archive</h1><p class="intro">Search by title or caption, narrow the list by year or page count, and sort the whole pile without asking an algorithm to decide what matters.</p></div>
+<section class="controls" aria-label="Archive controls">
+<label>Search<input id="search" type="search" placeholder="Title, caption, feeling…" autocomplete="off"></label>
+<label>Year<select id="year"><option value="">All years</option></select></label>
+<label>Length<select id="length"><option value="">All comics</option><option value="single">Single-page</option><option value="multi">Multi-page</option></select></label>
+<label>Sort<select id="sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select></label>
+</section>
+<p id="result-count" class="result-count" aria-live="polite"></p>
+<div id="archive-list" class="archive-list"><div class="state"><div><h2>Opening the archive…</h2><p>Fetching the comics.</p></div></div></div>
+</main>
 <footer>Made independently. No feed algorithm, no account required.</footer>
 <script>
-const $=s=>document.querySelector(s),el=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!==undefined)n.textContent=x;return n};
+const $=s=>document.querySelector(s);
 const api=async u=>{const r=await fetch(u),j=await r.json().catch(()=>({error:"Unreadable response"}));if(!r.ok)throw Error(j.error||"Request failed");return j};
-const fmt=v=>v?new Intl.DateTimeFormat(undefined,{year:"numeric",month:"long",day:"numeric"}).format(new Date(v)):"";
-function state(title,msg){const d=el("div","state"),b=el("div");b.append(el("h2","",title),el("p","",msg));d.append(b);return d}
-function comic(c,level=1,actions=false){const a=el("article","card"),m=el("div","meta"),h=el("h"+level,"",c.title||"Untitled comic");m.append(h);if(c.caption)m.append(el("p","caption",c.caption));if(c.published_at)m.append(el("time","date",fmt(c.published_at)));a.append(m);const p=el("div","pages");(c.images||[]).forEach((im,i)=>{const x=el("img");x.src=im.url;x.alt=im.alt_text||`Page ${i+1} of ${c.title||"comic"}`;x.loading="lazy";p.append(x)});a.append(p);if(actions){const z=el("div","actions"),o=el("a","","Open comic"),r=el("a","","Archive");o.href="/comic/"+encodeURIComponent(c.slug);r.href="/archive";z.append(o,r);a.append(z)}return a}
-function base(active){document.body.className="";document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("active",a.dataset.nav===active));const app=$("#app");app.className="";app.replaceChildren();return app}
-async function latest(){document.title="Kitsune Comics";const app=base("latest"),hero=el("section","hero"),l=el("div"),r=el("p","","A quiet corner of the internet for drawings, creatures, feelings, trouble, and whatever survives the page.");l.append(el("p","kicker","Comics by Kitsune"),el("h1","","Small stories. Sharp teeth."));hero.append(l,r);const row=el("div","row");row.append(el("h2","","Latest comic"));const target=state("Loading…","Fetching the newest comic.");app.append(hero,row,target);try{const j=await api("/api?action=list&limit=1");target.replaceWith(j.comics.length?comic(j.comics[0],2,true):state("The den is ready.","The first comic has not been published yet."))}catch(e){target.replaceWith(state("The fox tripped over a cable.",e.message))}}
-async function archive(){document.title="Archive | Kitsune Comics";const app=base("archive");app.append(el("p","kicker","Every published comic"),el("h1","","Archive"));const g=el("div","grid");app.append(g);try{const j=await api("/api?action=list&limit=100");if(!j.comics.length)return g.append(state("No comics yet.","Published comics will collect here in order."));j.comics.forEach(c=>{const t=el("article","tile"),a=el("a"),d=el("div");a.href="/comic/"+encodeURIComponent(c.slug);if(c.images[0]){const i=el("img");i.src=c.images[0].url;i.alt=`First page of ${c.title}`;a.append(i)}d.append(el("h2","",c.title||"Untitled comic"),el("p","",fmt(c.published_at)));a.append(d);t.append(a);g.append(t)})}catch(e){g.append(state("Could not open archive.",e.message))}}
-async function one(slug,preview=false){document.title=(preview?"Private Preview":"Comic")+" | Kitsune Comics";const app=base("");if(preview){document.body.className="preview";const b=el("span","badge","Private preview");$("header").append(b)}const target=state("Loading…","Fetching comic.");app.append(target);try{const q=preview?`action=preview&token=${encodeURIComponent(slug)}`:`action=comic&slug=${encodeURIComponent(slug)}`,j=await api("/api?"+q);document.title=(j.comic.title||"Comic")+" | Kitsune Comics";target.replaceWith(comic(j.comic,1));if(preview)app.append(el("div","note","Nothing here is public yet. Use the Publish button in the private uploader, or reply PUBLISH to the draft email."))}catch(e){target.replaceWith(state("Comic not found.",e.message))}}
-function about(){location.href="/about"}
-const path=decodeURIComponent(location.pathname).replace(/\/+$/ ,"")||"/";if(path==="/")latest();else if(path==="/archive")archive();else if(path==="/about")about();else if(path.startsWith("/comic/"))one(path.slice(7));else if(path.startsWith("/preview/"))one(path.slice(9),true);else base("").append(state("Page not found.","This path wandered out of the den."));
+const fmt=v=>v?new Intl.DateTimeFormat(undefined,{year:"numeric",month:"short",day:"numeric"}).format(new Date(v)):"Undated";
+const norm=v=>String(v||"").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"");
+const state=(title,msg)=>{const d=document.createElement("div");d.className="state";d.innerHTML=`<div><h2></h2><p></p></div>`;d.querySelector("h2").textContent=title;d.querySelector("p").textContent=msg;return d};
+let comics=[];
+function makeEntry(c){
+ const item=document.createElement("article");item.className="archive-item";
+ const thumb=document.createElement("a");thumb.className="thumb";thumb.href="/comic/"+encodeURIComponent(c.slug);thumb.setAttribute("aria-label",`Open ${c.title||"Untitled comic"}`);
+ if(c.images&&c.images[0]){const img=document.createElement("img");img.src=c.images[0].url;img.alt=c.images[0].alt_text||`First page of ${c.title||"comic"}`;img.loading="lazy";thumb.append(img)}else{const empty=document.createElement("span");empty.className="thumb-empty";empty.textContent="狐";thumb.append(empty)}
+ const copy=document.createElement("div");copy.className="item-copy";
+ const top=document.createElement("div");top.className="entry-top";
+ const title=document.createElement("h2");title.className="entry-title";const titleLink=document.createElement("a");titleLink.href=thumb.href;titleLink.textContent=c.title||"Untitled comic";title.append(titleLink);
+ const date=document.createElement("time");date.className="entry-date";date.dateTime=c.published_at||"";date.textContent=fmt(c.published_at);top.append(title,date);copy.append(top);
+ const pages=(c.images||[]).length;const meta=document.createElement("p");meta.className="entry-meta";meta.textContent=`${pages} page${pages===1?"":"s"}`;copy.append(meta);
+ if(c.caption){const excerpt=document.createElement("p");excerpt.className="excerpt";excerpt.textContent=c.caption;copy.append(excerpt)}
+ const read=document.createElement("a");read.className="read-link";read.href=thumb.href;read.textContent="Read comic →";copy.append(read);item.append(thumb,copy);return item;
+}
+function render(){
+ const q=norm($("#search").value),year=$("#year").value,length=$("#length").value,sort=$("#sort").value;
+ let visible=comics.filter(c=>{
+  const matchesText=!q||norm(`${c.title||""} ${c.caption||""}`).includes(q);
+  const comicYear=c.published_at?String(new Date(c.published_at).getFullYear()):"";
+  const matchesYear=!year||comicYear===year;
+  const pages=(c.images||[]).length;
+  const matchesLength=!length||(length==="single"?pages===1:pages>1);
+  return matchesText&&matchesYear&&matchesLength;
+ });
+ visible.sort((a,b)=>sort==="oldest"?new Date(a.published_at||0)-new Date(b.published_at||0):sort==="title"?String(a.title||"").localeCompare(String(b.title||"")):new Date(b.published_at||0)-new Date(a.published_at||0));
+ const list=$("#archive-list");list.replaceChildren();
+ $("#result-count").textContent=`Showing ${visible.length} of ${comics.length} comic${comics.length===1?"":"s"}`;
+ if(!visible.length){list.append(state("Nothing matches.","Try a different search or loosen the filters."));return}
+ visible.forEach(c=>list.append(makeEntry(c)));
+}
+async function load(){
+ try{
+  const j=await api("/api?action=list&limit=100");comics=j.comics||[];
+  const years=[...new Set(comics.map(c=>c.published_at?String(new Date(c.published_at).getFullYear()):"").filter(Boolean))].sort((a,b)=>b-a);
+  years.forEach(y=>{const o=document.createElement("option");o.value=y;o.textContent=y;$("#year").append(o)});
+  render();
+ }catch(e){const list=$("#archive-list");list.replaceChildren(state("Could not open archive.",e.message));$("#result-count").textContent=""}
+}
+$("#search").addEventListener("input",render);$("#year").addEventListener("change",render);$("#length").addEventListener("change",render);$("#sort").addEventListener("change",render);load();
 </script>
-</body></html>
+</body>
+</html>
