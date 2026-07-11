@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Kitsune Comics</title>
+  <desc id="desc">The Kitsune fox character mark</desc>
+  <circle cx="256" cy="256" r="248" fill="#d35d3e"/>
+  <circle cx="256" cy="256" r="205" fill="none" stroke="#f6efe5" stroke-width="18"/>
+  <text x="256" y="345" text-anchor="middle" font-family="Noto Serif CJK JP, Yu Mincho, Hiragino Mincho ProN, serif" font-size="270" font-weight="700" fill="#f6efe5">狐</text>
+</svg>
