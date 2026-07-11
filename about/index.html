@@ -3,27 +3,29 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="About Kitsune Comics.">
+<meta name="theme-color" content="#101214">
 <title>About | Kitsune Comics</title>
 <style>
-:root{--paper:#f5efe3;--ink:#171512;--muted:#6b6258;--red:#a3402d;--line:#d5cabb;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#a3402d12,transparent 28rem),var(--paper)}
+:root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+*{box-sizing:border-box}html{color-scheme:dark;background:var(--paper)}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0,#d35d3e12,transparent 28rem),var(--paper);color:var(--ink)}
 a{color:inherit;text-underline-offset:.2em}a:hover{color:var(--red)}header,footer,main{width:min(900px,calc(100% - 2rem));margin:auto}
 header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
 .brand{font-weight:900;text-decoration:none;display:flex;align-items:center;gap:.6rem}.mark{display:grid;place-items:center;border:2px solid;border-radius:48%;width:2.4rem;aspect-ratio:1;font-family:serif;transform:rotate(-5deg)}
-nav{display:flex;gap:1rem;font-weight:800;font-size:.9rem}nav a{text-decoration:none}.active{color:var(--red);text-decoration:underline}
+nav{display:flex;align-items:center;gap:1rem;font-weight:800;font-size:.9rem}nav a{text-decoration:none}.active{color:var(--red);text-decoration:underline}.support-link{color:var(--red)}
 main{padding:clamp(4rem,10vw,8rem) 0}.kicker{color:var(--red);font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
 h1{font:800 clamp(3.5rem,11vw,7rem)/.95 Georgia,serif;letter-spacing:-.055em;margin:.2rem 0 2rem}.prose{font:1.2rem/1.7 Georgia,serif;color:var(--muted);max-width:48rem}
 footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.85rem}
-@media(max-width:650px){nav{gap:.65rem;font-size:.8rem}.brand span:last-child{display:none}}
+@media(max-width:650px){nav{gap:.55rem;font-size:.78rem}.brand span:last-child{display:none}}
 </style>
 </head>
 <body>
-<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a href="/">Latest</a><a href="/archive">Archive</a><a class="active" href="/about">About</a></nav></header>
+<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a href="/">Latest</a><a href="/archive">Archive</a><a class="active" href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
 <main>
 <p class="kicker">About the artist</p>
-<h1>Kitsune makes comics.</h1>
-<p class="prose">This independent site is her home on the web. It keeps the work readable, chronological, and outside the machinery of social-media feeds.</p>
-<p class="prose">This page is waiting for Kitsune's own biography, links, and support information rather than inventing a personality for an actual person.</p>
+<h1>About Kitsune</h1>
+<p class="prose">I’m a multidisciplinary artist whose comics turn fleeting feelings, small incidents, private moments, pain, and resolution into something tangible. I make them to express things I cannot always get out through ordinary language, preserving emotions that might otherwise disappear as quickly as they arrived.</p>
+<p class="prose">My comics are also a way of communicating with my Kitty Bunny. Together, they become a shared visual language made from memory, tenderness, hurt, humor, strange creatures, and the process of finding a way through.</p>
+<p class="prose">Everything here is independently created, algorithm-free, and available to read for free forever. No feeds deciding what you see, no account required, and no work hidden behind a paywall. Donations are never required, but they help support a struggling artist and make it possible for me to keep creating. <a href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support my work on Venmo.</a></p>
 </main>
 <footer>Made independently. No feed algorithm, no account required.</footer>
 </body>
