@@ -1,0 +1,59 @@
+name: Install sharp hero
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/install-sharp-hero.yml
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build direct WebP asset and update loader
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          parts = [
+              "assets/hero-clean.0.hex",
+              "assets/hero-clean.1.hex",
+              "assets/hero-clean.2.hex",
+              "assets/hero-sharp.3a.hex",
+              "assets/hero-sharp.3b.hex",
+              "assets/hero-sharp.4a.hex",
+              "assets/hero-sharp.4b.hex",
+              "assets/hero-sharp.5a.hex",
+              "assets/hero-sharp.5b.hex",
+          ]
+
+          hero_hex = "".join(Path(path).read_text().strip() for path in parts)
+          hero_bytes = bytes.fromhex(hero_hex)
+          if not hero_bytes.startswith(b"RIFF") or hero_bytes[8:12] != b"WEBP":
+              raise SystemExit("Reconstructed hero is not a valid WebP")
+          Path("assets/hero-clean.webp").write_bytes(hero_bytes)
+
+          index = Path("index.html")
+          text = index.read_text()
+          start = text.index("async function loadHeroImage(img)")
+          end = text.index("\nasync function latest()", start)
+          loader = 'function loadHeroImage(img){img.onload=()=>img.classList.add("ready");img.onerror=()=>console.error("Hero image missing");img.src="/assets/hero-clean.webp?v=sharp-2"}'
+          index.write_text(text[:start] + loader + text[end:])
+
+          for pattern in ("assets/hero-clean.*.hex", "assets/hero-sharp.*.hex"):
+              for path in Path().glob(pattern):
+                  path.unlink()
+          PY
+
+      - name: Commit direct hero asset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Use full-resolution direct hero asset"
+          git push
