@@ -4,6 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Kitsune Comics archive.">
 <meta name="theme-color" content="#101214">
+<link rel="alternate" type="application/rss+xml" title="Kitsune Comics" href="/feed.xml">
 <title>Archive | Kitsune Comics</title>
 <style>
 :root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;--field:#0d0f10;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
@@ -39,7 +40,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 <p id="result-count" class="result-count" aria-live="polite"></p>
 <div id="archive-list" class="archive-list"><div class="state"><div><h2>Opening the archive…</h2><p>Fetching the comics.</p></div></div></div>
 </main>
-<footer>Made independently. No feed algorithm, no account required.</footer>
+<footer>Made independently. No feed algorithm, no account required. <a href="/subscribe">Subscribe via RSS.</a></footer>
 <script>
 const $=s=>document.querySelector(s);
 const api=async u=>{const r=await fetch(u),j=await r.json().catch(()=>({error:"Unreadable response"}));if(!r.ok)throw Error(j.error||"Request failed");return j};
