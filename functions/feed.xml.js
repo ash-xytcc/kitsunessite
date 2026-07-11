@@ -15,6 +15,7 @@ export async function onRequestGet({request,env}){
  const base=String(env.PUBLIC_SITE_URL||requestOrigin).replace(/\/+$/ ,"")+"/";
  const site=absolute(base,"/");
  const feed=absolute(base,"/feed.xml");
+ const icon=absolute(base,"/favicon.svg");
  const rows=await env.DB.prepare(
   "SELECT id,title,slug,caption,published_at FROM comics WHERE status='published' ORDER BY published_at DESC LIMIT 50"
  ).all();
@@ -45,13 +46,23 @@ ${image?`<enclosure url="${xmlEscape(image)}" type="${xmlEscape(media?.content_t
 
  const lastDate=(rows.results||[])[0]?.published_at;
  const xml=`<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
 <channel>
 <title>Kitsune Comics</title>
 <link>${xmlEscape(site)}</link>
 <description>Small stories with sharp teeth. Independent, algorithm-free comics by Kitsune.</description>
 <language>en-us</language>
 <atom:link href="${xmlEscape(feed)}" rel="self" type="application/rss+xml"/>
+<image>
+<url>${xmlEscape(icon)}</url>
+<title>Kitsune Comics</title>
+<link>${xmlEscape(site)}</link>
+<width>144</width>
+<height>144</height>
+</image>
+<webfeeds:icon>${xmlEscape(icon)}</webfeeds:icon>
+<webfeeds:logo>${xmlEscape(icon)}</webfeeds:logo>
+<webfeeds:accentColor>d35d3e</webfeeds:accentColor>
 <lastBuildDate>${xmlEscape(lastDate?new Date(lastDate).toUTCString():new Date().toUTCString())}</lastBuildDate>
 <generator>Kitsune Comics</generator>
 ${items.join("\n")}
