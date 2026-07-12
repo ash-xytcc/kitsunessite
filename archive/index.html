@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Kitsune Comics archive.">
+<meta name="description" content="The archive of The River Has Teeth and other work by Kitsune.">
 <meta name="theme-color" content="#101214">
-<link rel="alternate" type="application/rss+xml" title="Kitsune Comics" href="/feed.xml">
-<title>Archive | Kitsune Comics</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Kitsune" href="/feed.xml">
+<title>Archive | Kitsune</title>
 <style>
 :root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;--field:#0d0f10;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
 *{box-sizing:border-box}html{color-scheme:dark;background:var(--paper)}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0,#d35d3e12,transparent 28rem),var(--paper);color:var(--ink)}
@@ -13,13 +14,13 @@ a{color:inherit;text-underline-offset:.2em}a:hover{color:var(--red)}header,foote
 header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
 .brand{font-weight:900;text-decoration:none;display:flex;align-items:center;gap:.6rem}.mark{display:grid;place-items:center;border:2px solid;border-radius:48%;width:2.4rem;aspect-ratio:1;font-family:serif;transform:rotate(-5deg)}
 nav{display:flex;align-items:center;gap:1rem;font-weight:800;font-size:.9rem}nav a{text-decoration:none}.active{color:var(--red);text-decoration:underline}.support-link{color:var(--red)}
-main{padding:clamp(3rem,8vw,6rem) 0}.kicker{margin:0;color:var(--red);font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+main{padding:clamp(3rem,8vw,6rem) 0}.kicker,.series-name{margin:0;color:var(--red);font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
 .archive-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(15rem,28rem);gap:2rem;align-items:end;margin:.25rem 0 2rem}h1,h2{font-family:Georgia,serif;letter-spacing:-.045em;line-height:1;margin:0}h1{font-size:clamp(3.5rem,10vw,6.5rem)}h2{font-size:1.55rem}.intro{margin:0;color:var(--muted);font:1.05rem/1.55 Georgia,serif}
 .controls{display:grid;grid-template-columns:minmax(16rem,1fr) repeat(3,minmax(8rem,auto));gap:.75rem;padding:1rem;border:1px solid var(--line);border-radius:.85rem;background:var(--panel);margin-bottom:.8rem}
 .controls label{display:grid;gap:.38rem;color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.controls input,.controls select{width:100%;min-height:2.8rem;border:1px solid var(--line);border-radius:.55rem;background:var(--field);color:var(--ink);padding:.65rem .75rem;font:inherit}.controls input:focus,.controls select:focus{outline:2px solid var(--red);outline-offset:1px}
 .result-count{min-height:1.4rem;margin:.35rem 0 1rem;color:var(--muted);font-size:.86rem}.archive-list{display:grid;gap:.7rem}.archive-item{display:grid;grid-template-columns:128px minmax(0,1fr);gap:1rem;align-items:start;padding:.85rem;border:1px solid var(--line);border-radius:.8rem;background:var(--panel)}
 .thumb{display:block;width:128px;height:92px;border:1px solid var(--line);border-radius:.55rem;overflow:hidden;background:var(--field);text-decoration:none}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.thumb-empty{display:grid;place-items:center;width:100%;height:100%;color:var(--muted);font:700 1.7rem Georgia,serif}
-.item-copy{min-width:0}.entry-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}.entry-title a{text-decoration:none}.entry-title a:hover{text-decoration:underline}.entry-date{flex:0 0 auto;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}.entry-meta{margin:.45rem 0 0;color:var(--muted);font-size:.8rem}.excerpt{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:.55rem 0 0;color:var(--muted);font:1rem/1.45 Georgia,serif}.read-link{display:inline-block;margin-top:.65rem;color:var(--ink);font-size:.85rem;font-weight:900;text-decoration:none}.read-link:hover{text-decoration:underline}
+.item-copy{min-width:0}.series-name{margin:0 0 .35rem}.entry-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}.entry-title a{text-decoration:none}.entry-title a:hover{text-decoration:underline}.entry-date{flex:0 0 auto;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}.entry-meta{margin:.45rem 0 0;color:var(--muted);font-size:.8rem}.excerpt{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:.55rem 0 0;color:var(--muted);font:1rem/1.45 Georgia,serif}.read-link{display:inline-block;margin-top:.65rem;color:var(--ink);font-size:.85rem;font-weight:900;text-decoration:none}.read-link:hover{text-decoration:underline}
 .state{display:grid;place-items:center;min-height:14rem;text-align:center;border:1px dashed var(--line);border-radius:.8rem;padding:2rem}.state p{color:var(--muted);max-width:34rem;line-height:1.6}.state h2{font-size:1.8rem}
 footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.85rem}
 @media(max-width:800px){.archive-heading{grid-template-columns:1fr;gap:.8rem}.controls{grid-template-columns:1fr 1fr}.controls label:first-child{grid-column:1/-1}}
@@ -27,21 +28,22 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 </style>
 </head>
 <body>
-<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a href="/">Latest</a><a class="active" href="/archive">Archive</a><a href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
+<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune</span></a><nav><a href="/">Latest</a><a class="active" href="/archive">Archive</a><a href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
 <main>
-<p class="kicker">Every published comic</p>
-<div class="archive-heading"><h1>Archive</h1><p class="intro">Search by title or caption, narrow the list by year or page count, and sort the whole pile without asking an algorithm to decide what matters.</p></div>
+<p class="kicker">A tiny enchanted library</p>
+<div class="archive-heading"><h1>Archive</h1><p class="intro">Browse <em>The River Has Teeth</em> by installment title or caption. This library can also grow into future comics, drawings, writing, and other small artifacts.</p></div>
 <section class="controls" aria-label="Archive controls">
-<label>Search<input id="search" type="search" placeholder="Title, caption, feeling…" autocomplete="off"></label>
+<label>Search<input id="search" type="search" placeholder="Installment title, caption, feeling…" autocomplete="off"></label>
 <label>Year<select id="year"><option value="">All years</option></select></label>
-<label>Length<select id="length"><option value="">All comics</option><option value="single">Single-page</option><option value="multi">Multi-page</option></select></label>
+<label>Length<select id="length"><option value="">All installments</option><option value="single">Single-page</option><option value="multi">Multi-page</option></select></label>
 <label>Sort<select id="sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select></label>
 </section>
 <p id="result-count" class="result-count" aria-live="polite"></p>
-<div id="archive-list" class="archive-list"><div class="state"><div><h2>Opening the archive…</h2><p>Fetching the comics.</p></div></div></div>
+<div id="archive-list" class="archive-list"><div class="state"><div><h2>Opening the archive…</h2><p>Fetching the installments.</p></div></div></div>
 </main>
-<footer>Made independently. No feed algorithm, no account required. <a href="/subscribe">Subscribe via RSS.</a></footer>
+<footer>Kitsune is a tiny enchanted library. Independently made, algorithm-free, and free to read. <a href="/subscribe">Subscribe via RSS.</a></footer>
 <script>
+const SERIES_NAME="The River Has Teeth";
 const $=s=>document.querySelector(s);
 const api=async u=>{const r=await fetch(u),j=await r.json().catch(()=>({error:"Unreadable response"}));if(!r.ok)throw Error(j.error||"Request failed");return j};
 const fmt=v=>v?new Intl.DateTimeFormat(undefined,{year:"numeric",month:"short",day:"numeric"}).format(new Date(v)):"Undated";
@@ -50,20 +52,21 @@ const state=(title,msg)=>{const d=document.createElement("div");d.className="sta
 let comics=[];
 function makeEntry(c){
  const item=document.createElement("article");item.className="archive-item";
- const thumb=document.createElement("a");thumb.className="thumb";thumb.href="/comic/"+encodeURIComponent(c.slug);thumb.setAttribute("aria-label",`Open ${c.title||"Untitled comic"}`);
- if(c.images&&c.images[0]){const img=document.createElement("img");img.src=c.images[0].url;img.alt=c.images[0].alt_text||`First page of ${c.title||"comic"}`;img.loading="lazy";thumb.append(img)}else{const empty=document.createElement("span");empty.className="thumb-empty";empty.textContent="狐";thumb.append(empty)}
+ const thumb=document.createElement("a");thumb.className="thumb";thumb.href="/comic/"+encodeURIComponent(c.slug);thumb.setAttribute("aria-label",`Open ${c.title||"Untitled installment"}`);
+ if(c.images&&c.images[0]){const img=document.createElement("img");img.src=c.images[0].url;img.alt=c.images[0].alt_text||`First page of ${c.title||"installment"}`;img.loading="lazy";thumb.append(img)}else{const empty=document.createElement("span");empty.className="thumb-empty";empty.textContent="狐";thumb.append(empty)}
  const copy=document.createElement("div");copy.className="item-copy";
+ const series=document.createElement("p");series.className="series-name";series.textContent=SERIES_NAME;copy.append(series);
  const top=document.createElement("div");top.className="entry-top";
- const title=document.createElement("h2");title.className="entry-title";const titleLink=document.createElement("a");titleLink.href=thumb.href;titleLink.textContent=c.title||"Untitled comic";title.append(titleLink);
+ const title=document.createElement("h2");title.className="entry-title";const titleLink=document.createElement("a");titleLink.href=thumb.href;titleLink.textContent=c.title||"Untitled installment";title.append(titleLink);
  const date=document.createElement("time");date.className="entry-date";date.dateTime=c.published_at||"";date.textContent=fmt(c.published_at);top.append(title,date);copy.append(top);
  const pages=(c.images||[]).length;const meta=document.createElement("p");meta.className="entry-meta";meta.textContent=`${pages} page${pages===1?"":"s"}`;copy.append(meta);
  if(c.caption){const excerpt=document.createElement("p");excerpt.className="excerpt";excerpt.textContent=c.caption;copy.append(excerpt)}
- const read=document.createElement("a");read.className="read-link";read.href=thumb.href;read.textContent="Read comic →";copy.append(read);item.append(thumb,copy);return item;
+ const read=document.createElement("a");read.className="read-link";read.href=thumb.href;read.textContent="Read installment →";copy.append(read);item.append(thumb,copy);return item;
 }
 function render(){
  const q=norm($("#search").value),year=$("#year").value,length=$("#length").value,sort=$("#sort").value;
  let visible=comics.filter(c=>{
-  const matchesText=!q||norm(`${c.title||""} ${c.caption||""}`).includes(q);
+  const matchesText=!q||norm(`${SERIES_NAME} ${c.title||""} ${c.caption||""}`).includes(q);
   const comicYear=c.published_at?String(new Date(c.published_at).getFullYear()):"";
   const matchesYear=!year||comicYear===year;
   const pages=(c.images||[]).length;
@@ -72,7 +75,7 @@ function render(){
  });
  visible.sort((a,b)=>sort==="oldest"?new Date(a.published_at||0)-new Date(b.published_at||0):sort==="title"?String(a.title||"").localeCompare(String(b.title||"")):new Date(b.published_at||0)-new Date(a.published_at||0));
  const list=$("#archive-list");list.replaceChildren();
- $("#result-count").textContent=`Showing ${visible.length} of ${comics.length} comic${comics.length===1?"":"s"}`;
+ $("#result-count").textContent=`Showing ${visible.length} of ${comics.length} installment${comics.length===1?"":"s"}`;
  if(!visible.length){list.append(state("Nothing matches.","Try a different search or loosen the filters."));return}
  visible.forEach(c=>list.append(makeEntry(c)));
 }
