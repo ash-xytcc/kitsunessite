@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Subscribe to Kitsune Comics with RSS.">
+<meta name="description" content="Subscribe to Kitsune, a tiny enchanted library, with RSS.">
 <meta name="theme-color" content="#101214">
-<link rel="alternate" type="application/rss+xml" title="Kitsune Comics" href="/feed.xml">
-<title>Subscribe | Kitsune Comics</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Kitsune" href="/feed.xml">
+<title>Subscribe | Kitsune</title>
 <style>
 :root{--paper:#101214;--ink:#f6efe5;--muted:#aaa29a;--red:#d35d3e;--line:#343638;--panel:#17191b;--field:#0d0f10;font-family:system-ui,sans-serif;color:var(--ink);background:var(--paper)}
 *{box-sizing:border-box}html{color-scheme:dark;background:var(--paper)}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0,#d35d3e12,transparent 28rem),var(--paper);color:var(--ink)}
@@ -22,11 +23,11 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 </style>
 </head>
 <body>
-<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune Comics</span></a><nav><a href="/archive">Archive</a><a href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
+<header><a class="brand" href="/"><span class="mark">狐</span><span>Kitsune</span></a><nav><a href="/archive">Archive</a><a href="/about">About</a><a class="support-link" href="https://venmo.com/u/kitsunesnack" target="_blank" rel="noopener noreferrer">Support</a></nav></header>
 <main>
-<p class="kicker">Follow without algorithms</p>
-<h1>Subscribe to the comics.</h1>
-<p class="lead">RSS delivers each new comic to the reader you choose. No account here, no social-media feed, and no company deciding whether you get to see it.</p>
+<p class="kicker">A tiny enchanted library</p>
+<h1>Subscribe to the library.</h1>
+<p class="lead">RSS delivers every new addition from Kitsune to the reader you choose. No account here, no social-media feed, and no company deciding whether you get to see it.</p>
 <section class="panel">
 <h2>The easy way</h2>
 <ol><li>Open any RSS reader.</li><li>Choose <strong>Add feed</strong>, <strong>Follow site</strong>, or <strong>Subscribe</strong>.</li><li>Paste the address below.</li></ol>
@@ -34,13 +35,13 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 <div class="buttons"><a id="open-feed" class="button" href="/feed.xml">Open RSS feed</a><button id="share" type="button" hidden>Share feed</button></div>
 <p id="status" class="status" aria-live="polite"></p>
 </section>
-<section class="panel"><h2>What happens next?</h2><p>Whenever Kitsune publishes a comic, it appears in your RSS reader alongside the other sites you follow, in chronological order. Humanity briefly remembers that subscriptions can simply work.</p></section>
+<section class="panel"><h2>What happens next?</h2><p>Whenever Kitsune publishes a new installment of <em>The River Has Teeth</em>, or adds something else to the library later, it appears in your RSS reader in chronological order. A subscription that simply subscribes. Reckless innovation.</p></section>
 </main>
-<footer>Made independently. No feed algorithm, no account required.</footer>
+<footer>Kitsune is a tiny enchanted library. Independently made, algorithm-free, and free to read.</footer>
 <script>
 const feed=new URL("/feed.xml",location.origin).href,input=document.querySelector("#feed-url"),copy=document.querySelector("#copy"),share=document.querySelector("#share"),status=document.querySelector("#status");input.value=feed;
 copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(feed);copy.textContent="Copied";status.textContent="Feed address copied. Paste it into your RSS reader.";setTimeout(()=>copy.textContent="Copy feed address",1800)}catch{input.select();document.execCommand("copy");status.textContent="Feed address copied."}});
-if(navigator.share){share.hidden=false;share.addEventListener("click",()=>navigator.share({title:"Kitsune Comics RSS feed",text:"Follow Kitsune Comics without an algorithm.",url:feed}).catch(()=>{}))}
+if(navigator.share){share.hidden=false;share.addEventListener("click",()=>navigator.share({title:"Kitsune RSS feed",text:"Follow Kitsune, a tiny enchanted library, without an algorithm.",url:feed}).catch(()=>{}))}
 </script>
 </body>
 </html>
